@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller\Api;
+namespace App\Controller;
 
-use App\Controller\Api\AppController;
+use App\Controller\AppController;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Exception;
 
@@ -13,7 +13,7 @@ class MarcasController extends AppController {
         if ($this->request->is('post')) {
             $marcasTable = $this->fetchTable('Marcas');
             $novaMarca = $marcasTable->newEmptyEntity();
-            $form = $this->request->getData();
+            $form = array_merge($this->request->getQuery(), $this->request->getData());
             $novaMarca = $marcasTable->patchEntity($novaMarca, $form);
 
 
