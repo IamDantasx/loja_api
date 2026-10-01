@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Migrations\BaseMigration;
 
-class CreateProduto extends BaseMigration
+class CreateCategorias extends BaseMigration
 {
     /**
      * Change Method.
@@ -15,21 +15,23 @@ class CreateProduto extends BaseMigration
      */
     public function change(): void
     {
-        $table = $this->table('produto');
-        $table->addColumn('Nome', 'string', [
+        $table = $this->table('categorias');
+        $table->addColumn('nome', 'string', [
             'default' => null,
-            'limit' => 255,
+            'limit' => 120,
             'null' => false,
         ]);
-        $table->addColumn('quantidade', 'string', [
+        $table->addColumn('created', 'datetime', [
             'default' => null,
-            'limit' => 255,
             'null' => false,
         ]);
-        $table->addColumn('UN', 'string', [
+        $table->addColumn('modified', 'datetime', [
             'default' => null,
-            'limit' => 255,
             'null' => false,
+        ]);
+        $table->addColumn('deleted', 'datetime', [
+            'default' => null,
+            'null' => true,
         ]);
         $table->create();
     }
